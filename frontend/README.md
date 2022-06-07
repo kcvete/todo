@@ -24,7 +24,7 @@ $ npm run generate
 $ docker build -t todo-app .
 
 # run container
-$ docker run -it -p 3000:3000 nuxtjs-tutorial
+$ docker run -it -p 3000:3000 todo-app
 ```
 
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
