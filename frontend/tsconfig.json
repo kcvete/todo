@@ -6,7 +6,8 @@
     "lib": [
       "ESNext",
       "ESNext.AsyncIterable",
-      "DOM"
+      "DOM",
+      "es2018.promise"
     ],
     "esModuleInterop": true,
     "allowJs": true,

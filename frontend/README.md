@@ -17,6 +17,16 @@ $ npm run start
 $ npm run generate
 ```
 
+## Build setup with docker.
+```bash
+
+# build docker image
+$ docker build -t todo-app .
+
+# run container
+$ docker run -it -p 3000:3000 nuxtjs-tutorial
+```
+
 For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
 
 ## Special Directories
