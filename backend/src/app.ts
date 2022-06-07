@@ -1,9 +1,12 @@
 import express from 'express';
 import db from './db';
+import cors from 'cors';
 import bodyParser from 'body-parser';
 
 const app = express();
 app.use(bodyParser.json())
+app.use(cors())
+
 
 
 db.connect();
@@ -15,8 +18,6 @@ db.connect();
 // create table Todos:
 GET('/todos/create', () => db.todos.create());
 
-// add some initial records:
-GET('/todos/init', () => db.todos.init());
 
 // remove all records from the table:
 GET('/todos/empty', () => db.todos.empty());
@@ -26,17 +27,17 @@ GET('/todos/drop', () => db.todos.drop());
 
 // add a new todo, if it doesn't exist yet, and return the object:
 POST('/todos/', req => {
-    return db.todos.add(req.body.title, req.body.description, req.body.completed, req.body.deadline);
+    return db.todos.add(req.body.title, req.body.description, req.body.completed);
 });
 
 // edit a todo, if it doesn't exist yet, and return the object:
 PUT('/todos/:id', req => {
-    return db.todos.updateById(req.params.id, req.body.title, req.body.description, req.body.completed, req.body.deadline);
+    return db.todos.updateById(req.params.id, req.body.title, req.body.description, req.body.completed);
 });
 
 
 // find a todo by id:
-GET('/todos/find/:id', (req: any) => db.todos.findById(req.params.id));
+GET('/todos/:id', (req: any) => db.todos.findById(req.params.id));
 
 // remove a todo by id:
 DELETE('/todos/:id', (req: any) => db.todos.remove(req.params.id));

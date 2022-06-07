@@ -1,12 +1,9 @@
 
 import pgPromise from 'pg-promise'; // pg-promise core library
 import {IInitOptions, IDatabase, IMain} from 'pg-promise';
-import * as dbConfig from '../../db-config.json'; // db connection details
-console.log('dbConfig: ', dbConfig);
 import {IExtensions, TodosRepository} from './repos';
 type ExtendedProtocol = IDatabase<IExtensions> & IExtensions;
 
-console.log("hmmmm")
 const initOptions: IInitOptions<IExtensions> = {
     // Extending the database protocol with our custom repositories;
     // API: http://vitaly-t.github.io/pg-promise/global.html#event:extend
@@ -23,6 +20,19 @@ const initOptions: IInitOptions<IExtensions> = {
 const pgp: IMain = pgPromise(initOptions);
 
 // Creating the database instance with extensions:
-const db: ExtendedProtocol = pgp(dbConfig);
+let db: ExtendedProtocol;
+try {
+    db = pgp({
+        host: process.env.HOST,
+        port: +process.env.DATABASE_PORT,
+        database: process.env.DATABASE,
+        user: process.env.USER,
+        password: process.env.PASSWORD
+    });
+    
+} catch (error) {
+    console.log('error: ', error);
+    
+}
 
 export default db;

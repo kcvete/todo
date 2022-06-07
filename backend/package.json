@@ -4,11 +4,10 @@
   "description": "",
   "main": "dist/app.js",
   "scripts": {
-    "start": "tsc && npm run sql && node dist/src/app.js",
+    "start": "tsc && node dist/src/app.js",
     "lint": "eslint . --ext .ts",
     "dev": "concurrently \"npx tsc --watch\" \"nodemon -q dist/src/app.js\"",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sql": "copyfiles **/*.sql dist/"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -22,6 +21,7 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "copyfiles": "^2.4.1",
+    "cors": "^2.8.5",
     "express": "^4.17.1",
     "pg-promise": "^10.11.1",
     "typescript": "^4.7.2"
