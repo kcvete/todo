@@ -32,6 +32,7 @@ const query = pgp.helpers.insert(values, cs);
         console.log("Database todos created")
         await db.none(query)
         console.log("Inserted mock data in todos table")
+        process.exit(0)
     } catch (error) {
         console.log('error: ', error);
     }
